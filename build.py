@@ -2,11 +2,9 @@ import shutil
 import subprocess
 from pathlib import Path
 import argparse
-import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument("version", help="The version of this installer")
-parser.add_argument("--test", help="copy executable to local install directory", action="store_true")
 parser.add_argument("--linux", help="copy executable to deb build folder", action="store_true")
 parser.add_argument("--mac", help="copy executable to dmg build folder", action="store_true")
 args = parser.parse_args()
