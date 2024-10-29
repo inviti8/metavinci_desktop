@@ -5,7 +5,7 @@ a = Analysis(
     ['/media/desktop/_dsk/dev/metavinci_desktop/metavinci_desktop.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('images', 'images')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

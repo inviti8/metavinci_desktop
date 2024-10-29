@@ -46,7 +46,7 @@ shutil.rmtree(dist_dir)
 
 print("Building binary...")
 # build the python script into an executable using PyInstaller
-subprocess.run(['pyinstaller', '--onefile', str(cwd / src_file1.name)], check=True)
+subprocess.run(['pyinstaller', '--onefile', '--add-data', 'images:images', str(cwd / src_file1.name)], check=True)
 
 if args.linux:
     # target directories for the build folder and files
