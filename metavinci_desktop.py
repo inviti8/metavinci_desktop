@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from subprocess import run, Popen, PIPE, STDOUT
 from gifanimus import GifAnimation
+import ctypes
 
 BRAND = "HEAVYMETA®"
 VERSION = "0.01"
@@ -19,6 +20,9 @@ METAVINCI_INSTALL = "curl -L https://raw.githubusercontent.com/inviti8/metavinci
 METAVINCI_BIN = os.path.join(METAVINCI_PATH, 'bin', 'metavinci')
 LOADING_IMG = os.path.join(FILE_PATH, 'images', 'loading.gif')
 
+def Mbox(title, text, style):
+    return ctypes.windll.user32.MessageBoxW(0, text, title, style)
+
 def _run_command(cmd):
       process = Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True)
       output, error = process.communicate()
@@ -33,9 +37,12 @@ if __name__ == "__main__":
 
     if not os.path.exists(METAVINCI_PATH):
         print("metavinci not installed, installing...")
-        loading = GifAnimation(LOADING_IMG)
-        loading.Play()
-        _run_command(METAVINCI_INSTALL)
-        loading.Stop()
+        install = Mbox(f'{BRAND}', 'Install Heavymeta?', 1)
+        if install == 6:
+          loading = GifAnimation(LOADING_IMG)
+          loading.Play()
+          _run_command(METAVINCI_INSTALL)
+          loading.Stop()
+          _run_command(METAVINCI_BIN)
     else:
         _run_command(METAVINCI_BIN)
