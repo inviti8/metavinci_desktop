@@ -34,8 +34,6 @@ def _run_command(cmd):
         print(output.decode('utf-8'))
 
 if __name__ == "__main__":
-    print(f"{BRAND} {VERSION}")
-
     if not os.path.exists(METAVINCI_PATH):
         print("metavinci not installed, installing...")
         install = Mbox(f'{ABOUT}')
