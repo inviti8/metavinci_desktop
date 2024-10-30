@@ -34,12 +34,13 @@ def InstallBox(text):
 
 def _node_installed():
     try:
-        process = run(['node', '--version'], stdout=PIPE, stderr=STDOUT)
+        process = Popen(['node', '--version'], stdout=PIPE, stderr=PIPE, shell=True)
+        output, error = process.communicate()
         if process.returncode == 0:
-            print("Node.js is installed.")
+            print(output.decode('utf-8'))
             return True
         else:
-            print("Node.js is not installed.")
+            print("Command failed with error:", error.decode('utf-8'))
             return False
     except FileNotFoundError:
         print("Node.js is not installed.")
