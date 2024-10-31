@@ -33,7 +33,7 @@ def InstallBox(text):
   return buttonbox(text, choices=choices)
 
 def _node_installed():
-  process = Popen('node --version', stdout=PIPE, stderr=PIPE, shell=True)
+  process = Popen('npm --version', stdout=PIPE, stderr=PIPE, shell=True)
   process.communicate()
 
   if process.returncode != 0:  
