@@ -34,7 +34,7 @@ def InstallBox(text):
   return buttonbox(text, choices=choices)
 
 def _node_installed():
-  os.path.isdir(NPM_DIR)
+  return os.path.isdir(NPM_DIR)
 
 def _dfx_installed():
   return os.path.isfile(DFX_BIN)
@@ -47,7 +47,6 @@ def _run_command(cmd):
         return "Command failed with error:", error.decode('utf-8')
       else:
         return output.decode('utf-8')
-
 
 if __name__ == "__main__":
   _run = True
