@@ -22,6 +22,7 @@ METAVINCI_PATH = os.path.join(HOME, '.metavinci')
 METAVINCI_INSTALL = "curl -L https://raw.githubusercontent.com/inviti8/metavinci/main/install.sh | bash"
 METAVINCI_BIN = os.path.join(METAVINCI_PATH, 'bin', 'metavinci')
 DFX_BIN = os.path.join(HOME, '.local', 'share', 'dfx', 'bin', 'dfx')
+NPM_DIR = os.path.join(HOME, '.npm')
 LOADING_IMG = os.path.join(FILE_PATH, 'images', 'loading.gif')
 
 def MsgBox(text):
@@ -33,14 +34,7 @@ def InstallBox(text):
   return buttonbox(text, choices=choices)
 
 def _node_installed():
-  process = Popen('npm --version', stdout=PIPE, stderr=PIPE, shell=True)
-  process.communicate()
-
-  if process.returncode != 0:  
-      return False
-  else:
-      return True
-
+  os.path.isdir(NPM_DIR)
 
 def _dfx_installed():
   return os.path.isfile(DFX_BIN)
