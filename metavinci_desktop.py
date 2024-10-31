@@ -34,8 +34,9 @@ def InstallBox(text):
 
 def _node_installed():
   process = Popen('node --version', stdout=PIPE, stderr=PIPE, shell=True)
+  process.communicate()
 
-  if process.returncode == 0:  
+  if process.returncode != 0:  
       return False
   else:
       return True
@@ -52,7 +53,7 @@ def _run_command(cmd):
         return "Command failed with error:", error.decode('utf-8')
       else:
         return output.decode('utf-8')
-
+        
 
 if __name__ == "__main__":
   _run = True
