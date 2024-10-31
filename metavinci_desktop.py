@@ -34,7 +34,7 @@ def InstallBox(text):
 
 def _node_installed():
     try:
-        process = Popen(['node', '--version'], stdout=PIPE, stderr=PIPE, shell=True)
+        process = Popen('node --version', stdout=PIPE, stderr=PIPE, shell=True)
         output, error = process.communicate()
         if process.returncode == 0:
             print(output.decode('utf-8'))
@@ -42,8 +42,8 @@ def _node_installed():
         else:
             print("Command failed with error:", error.decode('utf-8'))
             return False
-    except FileNotFoundError:
-        print("Node.js is not installed.")
+    except Exception as e:
+        print(f"Node.js is not installed.{e}")
         return False
 
 def _dfx_installed():
@@ -54,9 +54,10 @@ def _run_command(cmd):
       output, error = process.communicate()
 
       if process.returncode != 0:  
-        print("Command failed with error:", error.decode('utf-8'))
+        return "Command failed with error:", error.decode('utf-8')
       else:
-        print(output.decode('utf-8'))
+        return output.decode('utf-8')
+
 
 if __name__ == "__main__":
   _run = True
