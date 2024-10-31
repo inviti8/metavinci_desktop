@@ -53,16 +53,16 @@ def _run_command(cmd):
         return "Command failed with error:", error.decode('utf-8')
       else:
         return output.decode('utf-8')
-        
+
 
 if __name__ == "__main__":
   _run = True
 
-  if not _node_installed():
+  if _node_installed() == False:
     MsgBox("Node is not installed, please install")
     _run = False
 
-  if not _dfx_installed():
+  if _dfx_installed() == False:
     MsgBox("Dfx is not installed, please install")
     _run = False
 
