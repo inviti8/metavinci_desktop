@@ -35,7 +35,7 @@ def InstallBox(text):
 def _node_installed():
   process = Popen('node --version', stdout=PIPE, stderr=PIPE, shell=True)
 
-  if process.returncode != 0:  
+  if process.returncode == 0:  
       return False
   else:
       return True
