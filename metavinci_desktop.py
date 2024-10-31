@@ -33,18 +33,13 @@ def InstallBox(text):
   return buttonbox(text, choices=choices)
 
 def _node_installed():
-    try:
-        process = Popen('node --version', stdout=PIPE, stderr=PIPE, shell=True)
-        output, error = process.communicate()
-        if process.returncode == 0:
-            print(output.decode('utf-8'))
-            return True
-        else:
-            print("Command failed with error:", error.decode('utf-8'))
-            return False
-    except Exception as e:
-        print(f"Node.js is not installed.{e}")
-        return False
+  process = Popen('node --version', stdout=PIPE, stderr=PIPE, shell=True)
+
+  if process.returncode != 0:  
+      return False
+  else:
+      return True
+
 
 def _dfx_installed():
   return os.path.isfile(DFX_BIN)
